@@ -36,6 +36,127 @@
 
 # Lets start the game!
 
+import turtle
+
+
+def user_turtle():
+    def row_one():
+        t = turtle.Turtle()
+        # Turtle first row
+        t.forward(100)
+        t.left(90)
+        t.forward(100)
+        t.left(90)
+        t.forward(100)
+        t.left(90)
+        t.forward(100)
+        t.left(90)
+        t.penup()
+        t.back(100)
+        t.pendown()
+        t.forward(100)
+        t.left(90)
+        t.forward(100)
+        t.left(90)
+        t.forward(100)
+        t.left(90)
+        t.forward(100)
+        t.left(90)
+        t.penup()
+        t.back(100)
+        t.pendown()
+        t.forward(100)
+        t.left(90)
+        t.forward(100)
+        t.left(90)
+        t.forward(100)
+        t.left(90)
+        t.forward(100)
+        t.left(90)
+        t.pendown()
+
+    def row_two():
+        t = turtle.Turtle()
+        t.penup()
+        t.goto(100,100)
+        t.pendown()
+        t.forward(0)
+        t.left(90)
+        t.forward(100)
+        t.left(90)
+        t.forward(100)
+        t.left(90)
+        t.forward(100)
+        t.left(90)
+        t.penup()
+        t.back(100)
+        t.pendown()
+        t.forward(100)
+        t.left(90)
+        t.forward(100)
+        t.left(90)
+        t.forward(100)
+        t.left(90)
+        t.forward(100)
+        t.left(90)
+        t.penup()
+        t.back(100)
+        t.pendown()
+        t.forward(100)
+        t.left(90)
+        t.forward(100)
+        t.left(90)
+        t.forward(100)
+        t.left(90)
+        t.forward(100)
+        t.left(90)
+        t.pendown()
+
+    def row_three():
+        t = turtle.Turtle()
+        t.penup()
+        t.goto(100,-100)
+        t.pendown()
+        t.forward(0)
+        t.left(90)
+        t.forward(100)
+        t.left(90)
+        t.forward(100)
+        t.left(90)
+        t.forward(100)
+        t.left(90)
+        t.forward(100)
+        t.penup()
+        t.back(200)
+        t.pendown()
+        t.forward(100)
+        t.left(90)
+        t.forward(100)
+        t.left(90)
+        t.forward(100)
+        t.left(90)
+        t.forward(100)
+        t.left(90)
+        t.penup()
+        t.back(100)
+        t.pendown()
+        t.forward(100)
+        t.left(90)
+        t.forward(100)
+        t.left(90)
+        t.forward(100)
+        t.left(90)
+        t.forward(100)
+        t.left(90)
+        t.pendown()
+
+    if __name__ == '__main__':
+        row_one()
+        row_two()
+        row_three()
+
+        turtle.Screen().exitonclick()
+
 
 def play_again():
     while True:
@@ -79,26 +200,62 @@ def user_list_choice():
 
 def full_list_at_once():
     user_input_full_list = (input("To create your list all at once, "
-                                  "please enter 9 numbers. \nAll numbers should be between 1 and 9. "
-                                  "Enter each of them with a space in between them. "
-                                  "\nLike this:1 2 3 4 5 6 7 8 9"))
+                                  "please first press the ENTER button. "
+                                  "Then enter 9 numbers. After you enter one number, press enter and then "
+                                  "type your second number, followed by your third and so on. "
+                                  "\nAll numbers should be between 1 and 9.\n"))
+    lst = []
+    n = int(9)
+    for i in range(0,n):
+        element = int(input())
+        if element not in {1,2,3,4,5,6,7,8,9}:
+            raise ValueError
+        else:
+            lst.append(element)
+    print(lst)
+    print("Your full list is:", lst)
 
-    user_input_full_list = user_input_full_list.split(" ")
-    print("Your list is:", user_input_full_list)
+    row_one = lst[0:3]
+    row_two = lst[3:6]
+    row_three = lst[6:9]
+    print(row_one)
+    print(row_two)
+    print(row_three)
+    print("Now lets check your list to see if it is a Lu Shu Magic Square! Your rows, columns and each diagonal need "
+          "to equal the same amount!")
+    if sum(row_one) == sum(row_two) and sum(row_two) == sum(row_three):
+        print("Congratulations! Your rows all add up to the same amount! Now lets check your columns!")
+    else:
+        print("Sorry! Your rows do not add up to the same amount.")
+        return play_again()
 
-    #   user_input_full_list = int()
+    column_one = [lst[0],lst[3],lst[6]]
+    column_two = [lst[1],lst[4],lst[7]]
+    column_three = [lst[2],lst[5],lst[8]]
+    print("Your first column is:",column_one)
+    print("Your second column is:",column_two)
+    print("Your third column is:", column_three)
+    if sum(column_one) == sum(column_two) and sum(column_two) == sum(column_three):
+        print("Congratulations! Your columns all add up to the same amount! "
+              "Lastly lets check to see if each diagonal adds up to the same amount!")
+    else:
+        print("Sorry! Your columns do not add up to the same amount.")
+        return play_again()
+    user_diagonal_list_starting_at_index_zero = [lst[0], lst[4], lst[8]]
+    user_diagonal_list_starting_at_index_two = [lst[2], lst[4],lst[6]]
+    print("Your first diagonal list is", user_diagonal_list_starting_at_index_zero)
+    print("Your second diagonal list is", user_diagonal_list_starting_at_index_two)
 
-    # if user_input_full_list == "1 2 3 4 5 6 7 8 9":
-    #     print("You entered 9 numbers! Your list is:", [user_input_full_list])
-    # else:
-    #     print("You did not enter a valid input.")
-    #     return play_again()
-
-    # user_input_full_list =[
-    #     [0, 0, 0],
-    #     [0, 0, 0],
-    #     [0, 0, 0]
-    # ]
+    if sum(user_diagonal_list_starting_at_index_zero) == sum(user_diagonal_list_starting_at_index_two):
+        print("Congratulations! The sum of each diagonal in your list adds up to the same amount!")
+    else:
+        print("The sum of your diagonal numbers do not add up to the same amount.")
+        return play_again()
+    print("Congratulations you have successfully created a Lu Shu Magic Square!")
+    print(row_one)
+    print(row_two)
+    print(row_three)
+    return user_turtle()
 
 
 def individually_enter_list():
@@ -261,4 +418,5 @@ def win():
 
 
 game()
+
 
